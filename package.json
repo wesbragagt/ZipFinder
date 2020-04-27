@@ -1,0 +1,11 @@
+{
+  "name": "ZipFinder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wesbragagt/ZipFinder.git",
+  "author": "weslley braga <wesbragagt@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "find": "^0.3.0"
+  }
+}
