@@ -1,14 +1,16 @@
+#!/usr/bin/env node
+console.log('Zip finder start...')
+const matchSorter = require('match-sorter').default
+const unzipper = require('unzipper')
 const find = require('find')
-const [,,date] = process.argv
-const searchFor = (name, arr) => arr => {
-        const checkMatchFor = search => str => str.includes(search) && str
-        const find = checkMatchFor(name)
-        const output = arr.map(find).filter(exist => exist) 
-        console.log(output)
-}
-const searchFunc = searchFor(date)
-// Looks for files in directory that contain a string input. Ouputing an array with their paths
-find.file(/\.zip$/,__dirname, searchFunc)
-// unzip the results
-// run a search on the content within the unziped files
-// delete unziped folders
+const fs = require('fs')
+const path = require('path')
+const execute = (...fn) => input => fn.reduce((fn, nextFn) => nextFn(fn), input)
+const print = value => console.log(value)
+// find all zip files in current directory
+const zipFilesInDirectory = (fn) => fn(find.fileSync(/\.zip$/,__dirname))
+// match a pattern passed by the cli
+const searchFor = pattern => list => matchSorter(list, pattern)
+
+const [,,searchTerm] = process.argv
+execute(searchFor, zipFilesInDirectory, print)(searchTerm)

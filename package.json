@@ -6,6 +6,11 @@
   "author": "weslley braga <wesbragagt@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "find": "^0.3.0"
+    "find": "^0.3.0",
+    "match-sorter": "^4.1.0",
+    "unzipper": "^0.10.11"
+  },
+  "bin": {
+    "zipfinder": "./find.js"
   }
 }
